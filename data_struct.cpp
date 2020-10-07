@@ -29,6 +29,7 @@ int main()
         m.insert(make_pair("xiaoming1", 10));
         m.insert(make_pair("xiaoming2", 40));
         m.insert(make_pair("xiaoming3", 30));
+        cout << m["xiaoming0"] << endl;
 
         mmm.insert(make_pair("A", m));
         for (auto it0 = mmm.begin(); it0 != mmm.end(); it0++)
