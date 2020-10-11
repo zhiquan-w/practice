@@ -1,21 +1,28 @@
 #include <iostream>
+#include <mysql.h>
 #include "library.h"
 
 using namespace std;
 
 int main()
 {
-        map<int, student> library;
+        MYSQL conn;
         student A;
-        map<int, student>::iterator it;
-        string filename = "1.txt";
+
         int id;
         string name;
-        bool sex;
+        string sex;
         string academy;
-        int time;
+        string time;
+
         char confirm = 'N';
-        read_student_info(library, filename);
+
+        mysql_init(&conn);
+        if (!mysql_real_connect(&conn, "localhost", "root", "pppp", "library", 0, NULL, 0))
+        {
+                cout << "fail to connect mysql" << endl;
+                return -1;
+        }
         while (true)
         {
                 A = {};
@@ -30,18 +37,11 @@ int main()
                 switch (cmd)
                 {
                 case 0:
-                        clear_student_info(filename);
-                        write_student_info(library, filename);
+
                         return 0;
                 case 1:
                         cout << "学号：";
                         cin >> id;
-                        read_student_info(library, filename);
-                        if (find_student_info(library, id) != library.end())
-                        {
-                                cout << "已经存在！" << endl;
-                                break;
-                        }
                         cout << "姓名：";
                         cin >> name;
                         cout << "性别：";
@@ -54,41 +54,31 @@ int main()
                         A.set_name(name);
                         A.set_sex(sex);
                         A.set_academy(academy);
-                        A.set_time_left(time);
-                        add_student_info(library, A);
+                        A.set_time(time);
+                        insert_student_info(&conn, &A);
                         break;
                 case 2:
                         cout << "学号：";
                         cin >> id;
-                        read_student_info(library, filename);
-                        it = find_student_info(library, id);
-                        if (it == library.end())
-                        {
-                                cout << "不存在！" << endl;
-                                break;
-                        }
-                        cout << "学号：";
-                        cout << it->second.get_id() << endl;
-                        cout << "姓名：";
-                        cout << it->second.get_name() << endl;
-                        cout << "性别：";
-                        cout << it->second.get_sex() << endl;
-                        cout << "学院：";
-                        cout << it->second.get_academy() << endl;
-                        cout << "日期：";
-                        cout << it->second.get_time_left() << endl;
+                        A.set_id(id);
+                        get_student_info_by_id(&conn, &A);
+                        cout << A.get_id() << endl;
+                        cout << A.get_name() << endl;
+                        cout << A.get_sex() << endl;
+                        cout << A.get_academy() << endl;
+                        cout << A.get_time() << endl;
                         break;
                 case 3:
                         cout << "学号：";
                         cin >> id;
-                        delete_student_info(library, id);
+
                         break;
                 case 4:
                         cout << "确定要删除整个数据库吗？(Y/N)" << endl;
                         cin >> confirm;
                         if (confirm == 'Y')
-                                clear_student_info(filename);
-                        break;
+
+                                break;
                 default:
                         break;
                 }

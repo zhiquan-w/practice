@@ -15,32 +15,32 @@ public:
     student(){};
     student(int id,
             string name,
-            bool sex,
+            string sex,
             string academy,
-            int time_left)
+            string time_left)
     {
         set_id(id);
         set_name(name);
         set_sex(sex);
         set_academy(academy);
-        set_time_left(time_left);
+        set_time(time_left);
     };
     void set_id(int input) { id = input; };
     void set_name(string input) { name = input; };
-    void set_sex(bool input) { sex = input; };
+    void set_sex(string input) { sex = input; };
     void set_academy(string input) { academy = input; };
-    void set_time_left(int input) { time_left = input; };
+    void set_time(string input) { time = input; };
     int get_id() { return id; };
     string get_name() { return name; };
-    bool get_sex() { return sex; };
+    string get_sex() { return sex; };
     string get_academy() { return academy; };
-    int get_time_left() { return time_left; };
+    string get_time() { return time; };
 
 private:
     int id;
     string name;
-    bool sex; // 1:男 0:女
+    string sex; // 1:男 0:女
     string academy;
-    int time_left;
+    string time;
 };
 #endif //LIBRARY_SYSTEM_STUDENTS_H

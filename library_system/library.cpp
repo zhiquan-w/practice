@@ -1,64 +1,61 @@
 #include "library.h"
-#include <iostream>
-#include <fstream>
-using namespace std;
 
-void add_student_info(map<int, student> &_map, student input)
+void insert_student_info(MYSQL *connect, student *input)
 {
-        _map.insert(make_pair(input.get_id(), input));
+        int val = 0;
+        char query[1024];
+        sprintf(query, "insert into student_information (id,name,sex,academy,time) values (%d, \"%s\", \"%s\", \"%s\", \"%s\");",
+                input->get_id(),
+                input->get_name().c_str(),
+                input->get_sex().c_str(),
+                input->get_academy().c_str(),
+                input->get_time().c_str());
+        val = mysql_query(connect, query);
+        printf("%d\n", val);
 }
 
-void delete_student_info(map<int, student> &_map, int input)
+void delete_student_info(MYSQL *connect, student *input)
 {
-        _map.erase(input);
 }
 
-map<int, student>::iterator find_student_info(map<int, student> &_map, int input)
+void get_student_info_by_id(MYSQL *connect, student *input)
 {
-        return _map.find(input);
-}
-
-void read_student_info(map<int, student> &_map, string filename)
-{
-        ifstream infile;
-        student tmp;
-        int id;
-        string name;
-        bool sex;
-        string academy;
-        int time;
-        int id_key;
-
-        infile.open(filename, ios::in);
-        while (infile.good() && !infile.eof())
+        MYSQL_RES res;
+        MYSQL_ROW row;
+        MYSQL_FIELD *fields;
+        char query[256];
+        int num_fileds;
+        sprintf(query, "SELECT * FROM student_information where id = %d", input->get_id());
+        mysql_query(connect, query);
+        res = *mysql_store_result(connect);
+        num_fileds = mysql_num_fields(&res);
+        row = mysql_fetch_row(&res);
+        fields = mysql_fetch_fields(&res);
+        for (int i = 0; i < num_fileds; i++)
         {
-                infile >> id_key >> id >> name >> sex >> academy >> time;
-                tmp.set_id(id);
-                tmp.set_name(name);
-                tmp.set_sex(sex);
-                tmp.set_academy(academy);
-                tmp.set_time_left(time);
-                add_student_info(_map, tmp);
+                if (strncmp(fields[i].name, "id", strlen("id")) == 0)
+                {
+                        input->set_id(atoi(row[i]));
+                };
+                if (strncmp(fields[i].name, "name", strlen("name")) == 0)
+                {
+                        input->set_name(row[i]);
+                };
+                if (strncmp(fields[i].name, "sex", strlen("sex")) == 0)
+                {
+                        input->set_sex(row[i]);
+                };
+                if (strncmp(fields[i].name, "academy", strlen("academy")) == 0)
+                {
+                        input->set_academy(row[i]);
+                };
+                if (strncmp(fields[i].name, "time", strlen("time")) == 0)
+                {
+                        input->set_time(row[i]);
+                };
         }
-        infile.close();
 }
 
-void write_student_info(map<int, student> _map, string filename)
+void get_all_student_info(MYSQL *connect, student *input)
 {
-        ofstream outfile;
-        outfile.open(filename, ios::out | ios::app);
-        for (auto it = _map.begin(); it != _map.end(); it++)
-        {
-                outfile << it->first << " " << it->second.get_id() << " ";
-                outfile << it->second.get_name() << " " << it->second.get_sex() << " ";
-                outfile << it->second.get_academy() << " " << it->second.get_time_left() << endl;
-        }
-        outfile.close();
-}
-
-void clear_student_info(string filename)
-{
-        ofstream outfile;
-        outfile.open(filename, ios::out | ios::trunc);
-        outfile.close();
 }
