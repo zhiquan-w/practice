@@ -2,6 +2,7 @@
 
 # namespace: tflite
 
+
 class BuiltinOperator(object):
     ADD = 0
     AVERAGE_POOL_2D = 1
@@ -133,6 +134,7 @@ class BuiltinOperator(object):
     PLACEHOLDER_FOR_GREATER_OP_CODES = 127
     CUMSUM = 128
 
+
 def build_str_map(obj):
     """Build string map of TFLite enum int value
 
@@ -152,6 +154,7 @@ def build_str_map(obj):
             if isinstance(field_value, int):
                 ret[field_value] = field_name
     return ret
+
 
 if __name__ == "__main__":
     map = build_str_map(BuiltinOperator())

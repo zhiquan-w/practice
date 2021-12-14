@@ -1,6 +1,6 @@
 import numpy as np
 
-a = np.random.random([5,3])
+a = np.random.random([5, 3])
 if a.shape[0] % 2 == 0:
     b = a.copy()
     b[0::2, :] = a[1::2, :]

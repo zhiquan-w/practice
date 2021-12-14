@@ -14,6 +14,8 @@ def _get_st_end(t_chunk, ocm_chunks):
             t_end = st + size - abs(offset_end)
             break
     return (t_st, t_end)
+
+
 t_chunk = (10, 200)
 chunks = [(100, 120), (230, 100)]
 print(_get_st_end(t_chunk, chunks))

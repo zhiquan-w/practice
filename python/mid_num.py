@@ -1,7 +1,7 @@
 def findMedianSortedArrays(nums1, nums2) -> float:
-    '''
+    """
         1. nums1 和 nums2 的集合的排序问题
-        '''
+        """
     sarray = []
     len1 = len(nums1)
     len2 = len(nums2)
@@ -21,12 +21,13 @@ def findMedianSortedArrays(nums1, nums2) -> float:
             sarray += nums1[st1:]
             break
 
-    if (len1+len2) % 2 == 0:
-        return (sarray[(len2+len1)//2] + sarray[(len2+len1)//2 - 1]) / 2
+    if (len1 + len2) % 2 == 0:
+        return (sarray[(len2 + len1) // 2] + sarray[(len2 + len1) // 2 - 1]) / 2
     else:
-        return sarray[(len2+len1)//2]
+        return sarray[(len2 + len1) // 2]
 
-a = [3,1,5]
-b = [2,6,4]
+
+a = [3, 1, 5]
+b = [2, 6, 4]
 c = findMedianSortedArrays(a, b)
 print(c)

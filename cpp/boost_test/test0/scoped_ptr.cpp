@@ -19,7 +19,7 @@ int main(void)
     {
         boost::scoped_ptr<X> pp(new X);
 
-        //boost::scoped_ptr<X> p2(pp); //Error:所有权不能转移
+       // boost::scoped_ptr<X> p2(pp); //Error:所有权不能转移
     }
     cout << "Exiting main ..." << endl;
 
