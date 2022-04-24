@@ -15,7 +15,7 @@ jobs:
         extensions: 'hpp,cc,cpp'
         clangFormatVersion: 12
         inplace: True
-        style: google
+        style: Google
     - uses: DoozyX/clang-format-lint-action@v0.13
       with:
         source: '.'
@@ -23,7 +23,7 @@ jobs:
         extensions: 'h,c'
         clangFormatVersion: 12
         inplace: True
-        style: file
+        style: Chromium
     - uses: EndBug/add-and-commit@v4
       with:
         author_name: Clang Robot
