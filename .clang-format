@@ -1,0 +1,11 @@
+# We'll use defaults from the LLVM style, but with 4 columns indentation.
+BasedOnStyle: Google
+Language: Cpp
+IndentWidth: 4
+ColumnLimit: 200
+PointerAlignment: Left
+AlignConsecutiveAssignments: true
+AlignAfterOpenBracket: BAS_Align
+TabWidth: 4
+
+
