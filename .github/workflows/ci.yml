@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: DoozyX/clang-format-lint-action@v0.13
       with:
-        source: './ ./* ./*/* ./*/*/* ./*/*/*/*'
+        source: '.'
         exclude: './3rdparty'
         extensions: 'hpp,cc,cpp'
         clangFormatVersion: 12
@@ -18,7 +18,7 @@ jobs:
         style: google
     - uses: DoozyX/clang-format-lint-action@v0.13
       with:
-        source: './ ./* ./*/* ./*/*/* ./*/*/*/*'
+        source: '.'
         exclude: './3rdparty'
         extensions: 'h,c'
         clangFormatVersion: 12
