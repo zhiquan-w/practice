@@ -1,0 +1,27 @@
+name: Run clang-format Linter
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.13
+      with:
+        source: '.'
+        exclude: './3rdparty'
+        extensions: 'hpp,cc,cpp'
+        clangFormatVersion: 12
+        inplace: True
+        style: google
+    - uses: DoozyX/clang-format-lint-action@v0.13
+      with:
+        source: '.'
+        exclude: './3rdparty'
+        extensions: 'h,c'
+        clangFormatVersion: 12
+        inplace: True
+        style: gnu
+    
