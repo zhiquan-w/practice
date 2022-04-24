@@ -23,7 +23,7 @@ jobs:
         extensions: 'h,c'
         clangFormatVersion: 12
         inplace: True
-        style: gnu
+        style: file
     - uses: EndBug/add-and-commit@v4
       with:
         author_name: Clang Robot
