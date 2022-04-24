@@ -1382,7 +1382,7 @@ struct const_array {
 
 #ifdef GCC4_FALLBACK
   XTENSOR_CONST
-      typename const_array_detail::array_traits<T, N>::storage_type m_data;
+  typename const_array_detail::array_traits<T, N>::storage_type m_data;
 #else
   XTENSOR_CONST T m_data[N > 0 ? N : 1];
 #endif

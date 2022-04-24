@@ -1932,8 +1932,7 @@ unsigned int gamma(unsigned int arg) {
      s = p[0]; for(unsigned int i=0; i<5; ++i) s += p[i+1] / (arg+i); return
      std::log(s) + (arg-0.5)*std::log(t) - t;
   */
-  static const f31 pi(0xC90FDAA2, 1),
-      lbe(0xB8AA3B29, 0);
+  static const f31 pi(0xC90FDAA2, 1), lbe(0xB8AA3B29, 0);
   unsigned int abs = arg & 0x7FFF, sign = arg & 0x8000;
   bool bsign = sign != 0;
   f31 z(abs),
@@ -2887,7 +2886,7 @@ inline half operator/(T x, half y) {
 
 /// Output operator.
 ///	This uses the built-in functionality for streaming out floating-point
-///numbers.
+/// numbers.
 /// \param out output stream to write into
 /// \param arg half expression to write
 /// \return reference to output stream
@@ -2903,7 +2902,7 @@ std::basic_ostream<charT, traits> &operator<<(
 
 /// Input operator.
 ///	This uses the built-in functionality for streaming in floating-point
-///numbers, specifically double precision floating
+/// numbers, specifically double precision floating
 /// point numbers (unless overridden with [HALF_ARITHMETIC_TYPE](\ref
 /// HALF_ARITHMETIC_TYPE)). So the input string is first rounded to double
 /// precision using the underlying platform's current floating-point rounding
@@ -3793,7 +3792,7 @@ inline half pow(half x, half y) {
 
 /// Compute sine and cosine simultaneously.
 ///	This returns the same results as sin() and cos() but is faster than
-///calling each function individually.
+/// calling each function individually.
 ///
 /// This function is exact to rounding for all rounding modes.
 /// \param arg function argument
