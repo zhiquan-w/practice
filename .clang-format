@@ -2,10 +2,6 @@
 BasedOnStyle: Google
 Language: Cpp
 IndentWidth: 4
-ColumnLimit: 200
-PointerAlignment: Left
-AlignConsecutiveAssignments: true
-AlignAfterOpenBracket: BAS_Align
 TabWidth: 4
 
 
